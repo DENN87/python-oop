@@ -41,6 +41,12 @@ class Rectangle:
         self.p1 = p1
         self.p2 = p2
 
+    def __repr__(self):  # special method used to represent a class’s objects as a string
+        return "Rectangle Coordinates: \n" \
+               f"({self.p1.x}, {self.p1.y}) \n" \
+               f"({self.p2.x}, {self.p2.y}) \n" \
+
+
 
 # creating random points for a rectangle using 'randint' library
 rectangle = Rectangle(
@@ -54,4 +60,4 @@ rectangle = Rectangle(
     )
 )
 
-
+print(rectangle)
