@@ -3,6 +3,7 @@ class Bill:
     Object that contains data about a bill, such as
     total amount and period of the bill.
     """
+
     def __init__(self, amount, period):
         self.amount = amount
         self.period = period
@@ -11,15 +12,12 @@ class Bill:
         return f"The bill for {self.period} was {self.amount}$"
 
 
-bill = Bill(3000, "March 2022")
-print(bill)
-
-
 class HouseMate:
     """
     Creates a house mate person who lives in the
     house and pays a share of the bill.
     """
+
     def __init__(self, name, days_in_house):
         self.name = name
         self.days_in_house = days_in_house
@@ -27,10 +25,8 @@ class HouseMate:
     def __repr__(self):
         return f"{self.name} was in the house for {self.days_in_house} days."
 
-
-mate_1 = HouseMate("Bob", 15)
-print(mate_1)
-
+    def pays(self, bill):
+        return bill.amount * 12 / 365 * self.days_in_house
 
 class PdfReport:
     """
@@ -38,6 +34,17 @@ class PdfReport:
     the house mates such as their names, their
     due amount and the period of the bill.
     """
+
     def __init__(self, filename):
         self.filename = filename
 
+
+current_bill = Bill(800, "March 2022")
+print(current_bill)
+
+bob = HouseMate("Bob", 15)
+anne = HouseMate("Anne", 25)
+print(bob, anne)
+
+print(bob.pays(current_bill))
+print(anne.pays(current_bill))
