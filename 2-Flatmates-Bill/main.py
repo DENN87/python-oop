@@ -1,5 +1,8 @@
 class Bill:
-
+    """
+    Object that contains data about a bill, such as
+    total amount and period of the bill.
+    """
     def __init__(self, amount, period):
         self.amount = amount
         self.period = period
@@ -13,7 +16,10 @@ print(bill)
 
 
 class HouseMate:
-
+    """
+    Creates a house mate person who lives in the
+    house and pays a share of the bill.
+    """
     def __init__(self, name, days_in_house):
         self.name = name
         self.days_in_house = days_in_house
@@ -24,3 +30,14 @@ class HouseMate:
 
 mate_1 = HouseMate("Bob", 15)
 print(mate_1)
+
+
+class PdfReport:
+    """
+    Creates a PDF file that contains data about
+    the house mates such as their names, their
+    due amount and the period of the bill.
+    """
+    def __init__(self, filename):
+        self.filename = filename
+
