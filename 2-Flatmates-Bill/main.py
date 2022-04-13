@@ -9,7 +9,7 @@ class Bill:
         self.period = period
 
     def __repr__(self):
-        return f"The bill for {self.period} was {self.amount}$"
+        return f"The bill for {self.period} was ${self.amount}"
 
 
 class HouseMate:
@@ -25,8 +25,8 @@ class HouseMate:
     def __repr__(self):
         return f"{self.name} was in the house for {self.days_in_house} days."
 
-    def pays(self, bill):
-        return bill.amount * 12 / 365 * self.days_in_house
+    def pays(self, bill, renter_2):
+        return (self.days_in_house / (self.days_in_house + renter_2.days_in_house)) * bill.amount
 
 class PdfReport:
     """
@@ -44,7 +44,6 @@ print(current_bill)
 
 bob = HouseMate("Bob", 15)
 anne = HouseMate("Anne", 25)
-print(bob, anne)
 
-print(bob.pays(current_bill))
-print(anne.pays(current_bill))
+print(f"{bob} Sharing ${bob.pays(current_bill, anne)} of the total bill.")
+print(f"{anne} Sharing ${anne.pays(current_bill, bob)} of the total bill.")
