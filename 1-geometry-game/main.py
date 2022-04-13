@@ -11,6 +11,7 @@ Development Steps for Geometry Game
 
 """
 import math
+from random import randint
 
 
 class Point:  # a class is a blueprint, it defines how a point object looks like and what it does
@@ -31,7 +32,7 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
             return False
 
     def distance_from_point(self, point):
-        return ((self.x - point.x)**2 + (self.y - point.y)**2) ** 0.5
+        return ((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5
 
 
 class Rectangle:
@@ -41,12 +42,16 @@ class Rectangle:
         self.p2 = p2
 
 
-point1 = Point(2, 5)  # create object instance 'point1'
+# creating random points for a rectangle using 'randint' library
+rectangle = Rectangle(
+    Point(
+        randint(0, 9),
+        randint(0, 9),
+    ),
+    Point(
+        randint(10, 19),
+        randint(10, 19),
+    )
+)
 
-point2 = Point(1, 1)
-point2a = Point(2, 2)
-print(point2.distance_from_point(point2a))
 
-point_x = Point(6, 7)
-rectangle_xy = Rectangle(Point(5, 6), Point(7, 9))
-print(point_x.find_point_inside_rectangle(rectangle_xy))
