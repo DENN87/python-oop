@@ -45,10 +45,9 @@ class Rectangle:
         self.p2 = p2
 
     def __repr__(self):  # special method used to represent a class’s objects as a string
-        return "Rectangle Coordinates: \n" \
-               f"({self.p1.x}, {self.p1.y}) \n" \
-               f"({self.p2.x}, {self.p2.y}) \n" \
-
+        return ("Rectangle Coordinates: \n"
+                f"({self.p1.x}, {self.p1.y}) \n"
+                f"({self.p2.x}, {self.p2.y}) \n")
 
 
 # creating random points for a rectangle using 'randint' library
@@ -65,10 +64,11 @@ rectangle = Rectangle(
 
 print(rectangle)
 
-
+# get user input
 user_point = Point(int(input("Guess X: ")),
                    int(input("Guess Y: ")))
 
+# show user result feedback
 if user_point.find_point_inside_rectangle(rectangle):
     print(f"Well done, your point was inside the rectangle!")
 else:
