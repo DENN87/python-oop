@@ -49,6 +49,9 @@ class Rectangle:
                 f"({self.p1.x}, {self.p1.y}) \n"
                 f"({self.p2.x}, {self.p2.y}) \n")
 
+    def area(self):
+        return (self.p2.x - self.p1.x) * (self.p2.y - self.p1.y)
+
 
 # creating random points for a rectangle using 'randint' library
 rectangle = Rectangle(
@@ -64,12 +67,20 @@ rectangle = Rectangle(
 
 print(rectangle)
 
-# get user input
+# get user input for point
 user_point = Point(int(input("Guess X: ")),
                    int(input("Guess Y: ")))
+
+# get user input for area
+user_area = int(input("Guess rectangle area: "))
 
 # show user result feedback
 if user_point.find_point_inside_rectangle(rectangle):
     print(f"Well done, your point was inside the rectangle!")
 else:
     print("Your point was outside the rectangle, try again!")
+
+if rectangle.area() - user_area == 0:
+    print("You guessed the area!")
+else:
+    print(f"Your area was off by: {rectangle.area() - user_area}.")
