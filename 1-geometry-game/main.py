@@ -22,6 +22,9 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         self.x = x
         self.y = y
 
+    def __repr__(self):
+        return f"({self.x}, {self.y})"
+
     # Function that will return True if the given point(x, y) is
     # in the given rectangle coordinates
     def find_point_inside_rectangle(self, rectangle):
@@ -66,4 +69,7 @@ print(rectangle)
 user_point = Point(int(input("Guess X: ")),
                    int(input("Guess Y: ")))
 
-print(user_point.find_point_inside_rectangle(rectangle))
+if user_point.find_point_inside_rectangle(rectangle):
+    print(f"Well done, your point was inside the rectangle!")
+else:
+    print("Your point was outside the rectangle, try again!")
