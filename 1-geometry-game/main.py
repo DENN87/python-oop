@@ -23,9 +23,9 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
 
     # Function that will return True if the given point(x, y) is
     # in the given rectangle coordinates
-    def find_point_inside_rectangle(self, lower_left, upper_right):
-        if lower_left[0] < self.x < upper_right[0] \
-                and lower_left[1] < self.y < upper_right[1]:
+    def find_point_inside_rectangle(self, rectangle):
+        if rectangle.p1.x < self.x < rectangle.p2.x \
+                and rectangle.p1.y < self.y < rectangle.p2.y:
             return True
         else:
             return False
@@ -34,10 +34,19 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         return ((self.x - point.x)**2 + (self.y - point.y)**2) ** 0.5
 
 
+class Rectangle:
+
+    def __init__(self, p1, p2):
+        self.p1 = p1
+        self.p2 = p2
+
+
 point1 = Point(2, 5)  # create object instance 'point1'
 
-print(point1.find_point_inside_rectangle((1, 1), (3, 6)))
+point2 = Point(1, 1)
+point2a = Point(2, 2)
+print(point2.distance_from_point(point2a))
 
-p1 = Point(1, 1)
-p2 = Point(2, 2)
-print(p1.distance_from_point(p2))
+point_x = Point(6, 7)
+rectangle_xy = Rectangle(Point(5, 6), Point(7, 9))
+print(point_x.find_point_inside_rectangle(rectangle_xy))
