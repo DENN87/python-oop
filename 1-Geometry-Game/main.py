@@ -9,6 +9,11 @@ Development Steps for Geometry Game
 
     4. Calling the classes and their methods
 
+    Guess a point(x, y) inside a given random coordinates of a rectangle((x,y), (x,y))
+    Guess area of the rectangle.
+    Display results to user in terminal.
+    Display a graphical interpretation of the results.
+
 """
 import turtle
 from random import randint
