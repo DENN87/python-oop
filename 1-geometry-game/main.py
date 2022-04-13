@@ -10,6 +10,8 @@ Development Steps for Geometry Game
     4. Calling the classes and their methods
 
 """
+import math
+
 
 class Point:  # a class is a blueprint, it defines how a point object looks like and what it does
 
@@ -19,7 +21,8 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         self.x = x
         self.y = y
 
-    # function that will return True if the given point(x, y) is in the given rectangle coordinates
+    # Function that will return True if the given point(x, y) is
+    # in the given rectangle coordinates
     def find_point_inside_rectangle(self, lower_left, upper_right):
         if lower_left[0] < self.x < upper_right[0] \
                 and lower_left[1] < self.y < upper_right[1]:
@@ -27,7 +30,12 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         else:
             return False
 
+    def distance_from_point(self, x, y):
+        return math.sqrt(math.pow(self.x - x, 2) + math.pow(self.y - y, 2))
 
-point1 = Point(2, 5)  # point1 is an object instance
+
+point1 = Point(2, 5)  # create object instance 'point1'
 
 print(point1.find_point_inside_rectangle((1, 1), (3, 6)))
+
+print(Point(1, 1).distance_from_point(2, 2))
