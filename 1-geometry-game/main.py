@@ -10,7 +10,7 @@ Development Steps for Geometry Game
     4. Calling the classes and their methods
 
 """
-import math
+import turtle
 from random import randint
 
 
@@ -53,19 +53,66 @@ class Rectangle:
         return (self.p2.x - self.p1.x) * (self.p2.y - self.p1.y)
 
 
-# creating random points for a rectangle using 'randint' library
+class GuiRectangle(Rectangle):
+
+    def draw(self, canvas):
+        # rectangle height, width
+        rectangle_height = self.p2.y - self.p1.y
+        rectangle_width = self.p2.x - self.p1.x
+
+        # Go to coordinate
+        canvas.penup()
+        canvas.goto(self.p1.x, self.p1.y)
+
+        canvas.pendown()
+        canvas.forward(rectangle_width)
+        canvas.left(90)
+
+        canvas.forward(rectangle_height)
+        canvas.left(90)
+
+        canvas.forward(rectangle_width)
+        canvas.left(90)
+
+        canvas.forward(rectangle_height)
+
+        turtle.done()
+
+
+# creating random points for a rectangle object using 'randint' library
 rectangle = Rectangle(
     Point(
         randint(0, 9),
         randint(0, 9),
     ),
     Point(
-        randint(10, 19),
-        randint(10, 19),
+        randint(100, 190),
+        randint(100, 190),
     )
 )
 
 print(rectangle)
+
+# GUI Rectangle
+gui_rectangle = GuiRectangle(
+    Point(
+        randint(0, 0),
+        randint(0, 0),
+    ),
+    Point(
+        randint(100, 200),
+        randint(100, 200),
+    )
+)
+# Create a canvas instance
+myturtle = turtle.Turtle()
+
+# Set Canvas Window Size
+screen = turtle.Screen()
+screen.setup(500, 500)
+
+# Draw the rectangle
+gui_rectangle.draw(canvas=myturtle)
 
 # get user input for point
 user_point = Point(int(input("Guess X: ")),
