@@ -11,3 +11,14 @@ Development Steps for Geometry Game
 
 """
 
+class Point:  # a class is a blueprint, it defines how a point object looks like and what it does
+
+    # The special method __init__ is the Python constructor,
+    # lets the class initialize the object's attributes
+    def __init__(self, x, y):  # self - is a Point object
+        self.x = x
+        self.y = y
+
+
+point1 = Point(10, 20)  # point1 is an object instance
+
