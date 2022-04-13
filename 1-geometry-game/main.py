@@ -22,7 +22,7 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         self.x = x
         self.y = y
 
-    def __repr__(self):
+    def __repr__(self):  # special method used to represent a class’s objects as a string
         return f"({self.x}, {self.y})"
 
     # Function that will return True if the given point(x, y) is
@@ -38,13 +38,22 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         return ((self.x - point.x) ** 2 + (self.y - point.y) ** 2) ** 0.5
 
 
+class GuiPoint(Point):
+
+    def draw_point(self, canvas):
+        canvas.hideturtle()
+        canvas.penup()
+        canvas.goto(self.x, self.y)
+        canvas.dot(7.5, "red")
+
+
 class Rectangle:
 
     def __init__(self, p1, p2):
         self.p1 = p1
         self.p2 = p2
 
-    def __repr__(self):  # special method used to represent a class’s objects as a string
+    def __repr__(self):
         return ("Rectangle Coordinates: \n"
                 f"({self.p1.x}, {self.p1.y}) \n"
                 f"({self.p2.x}, {self.p2.y}) \n")
@@ -53,9 +62,9 @@ class Rectangle:
         return (self.p2.x - self.p1.x) * (self.p2.y - self.p1.y)
 
 
-class GuiRectangle(Rectangle):
+class GuiRectangle(Rectangle):  # class inheritance, GuiRectangle will inherit from parent class Rectangle
 
-    def draw(self, canvas):
+    def draw_rectangle(self, canvas):
         # rectangle height, width
         rectangle_height = self.p2.y - self.p1.y
         rectangle_width = self.p2.x - self.p1.x
@@ -80,39 +89,19 @@ class GuiRectangle(Rectangle):
 
 
 # creating random points for a rectangle object using 'randint' library
-rectangle = Rectangle(
-    Point(
-        randint(0, 9),
-        randint(0, 9),
-    ),
-    Point(
-        randint(100, 190),
-        randint(100, 190),
-    )
-)
-
-print(rectangle)
-
-# GUI Rectangle
+# GUI Rectangle instance
 gui_rectangle = GuiRectangle(
     Point(
-        randint(0, 0),
-        randint(0, 0),
+        randint(0, 50),
+        randint(0, 50),
     ),
     Point(
         randint(100, 200),
         randint(100, 200),
     )
 )
-# Create a canvas instance
-myturtle = turtle.Turtle()
 
-# Set Canvas Window Size
-screen = turtle.Screen()
-screen.setup(500, 500)
-
-# Draw the rectangle
-gui_rectangle.draw(canvas=myturtle)
+print(gui_rectangle)
 
 # get user input for point
 user_point = Point(int(input("Guess X: ")),
@@ -122,12 +111,29 @@ user_point = Point(int(input("Guess X: ")),
 user_area = int(input("Guess rectangle area: "))
 
 # show user result feedback
-if user_point.find_point_inside_rectangle(rectangle):
+if user_point.find_point_inside_rectangle(gui_rectangle):
     print(f"Well done, your point was inside the rectangle!")
 else:
     print("Your point was outside the rectangle, try again!")
 
-if rectangle.area() - user_area == 0:
+if gui_rectangle.area() - user_area == 0:
     print("You guessed the area!")
 else:
-    print(f"Your area was off by: {rectangle.area() - user_area}.")
+    print(f"Your area was off by: {gui_rectangle.area() - user_area}.")
+
+# Create a canvas instance
+myturtle = turtle.Turtle()
+
+# Set Canvas Window Size
+screen = turtle.Screen()
+screen.setup(500, 500)
+
+# Draw user point
+gui_point = GuiPoint(user_point.x, user_point.y)
+gui_point.draw_point(canvas=myturtle)
+
+# Draw the rectangle
+gui_rectangle.draw_rectangle(canvas=myturtle)
+
+
+
