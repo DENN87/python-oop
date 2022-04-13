@@ -19,6 +19,15 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         self.x = x
         self.y = y
 
+    # function that will return True if the given point(x, y) is in the given rectangle coordinates
+    def find_point_inside_rectangle(self, lower_left, upper_right):
+        if lower_left[0] < self.x < upper_right[0] \
+                and lower_left[1] < self.y < upper_right[1]:
+            return True
+        else:
+            return False
 
-point1 = Point(10, 20)  # point1 is an object instance
 
+point1 = Point(2, 5)  # point1 is an object instance
+
+print(point1.find_point_inside_rectangle((1, 1), (3, 6)))
