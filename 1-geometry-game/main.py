@@ -30,12 +30,14 @@ class Point:  # a class is a blueprint, it defines how a point object looks like
         else:
             return False
 
-    def distance_from_point(self, x, y):
-        return math.sqrt(math.pow(self.x - x, 2) + math.pow(self.y - y, 2))
+    def distance_from_point(self, point):
+        return ((self.x - point.x)**2 + (self.y - point.y)**2) ** 0.5
 
 
 point1 = Point(2, 5)  # create object instance 'point1'
 
 print(point1.find_point_inside_rectangle((1, 1), (3, 6)))
 
-print(Point(1, 1).distance_from_point(2, 2))
+p1 = Point(1, 1)
+p2 = Point(2, 2)
+print(p1.distance_from_point(p2))
