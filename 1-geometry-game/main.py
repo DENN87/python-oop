@@ -61,3 +61,9 @@ rectangle = Rectangle(
 )
 
 print(rectangle)
+
+
+user_point = Point(int(input("Guess X: ")),
+                   int(input("Guess Y: ")))
+
+print(user_point.find_point_inside_rectangle(rectangle))
