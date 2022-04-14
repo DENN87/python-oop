@@ -1,3 +1,5 @@
+import time
+
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.lang import Builder
@@ -6,16 +8,21 @@ from kivy.lang import Builder
 Builder.load_file('frontend.kv')
 
 
-class Webcam:
+class CameraScreen(Screen):
 
     def start(self):
-        pass
+        self.ids.camera.play = True
+        self.ids.btn_start_stop.text = 'Stop Camera'
+        self.ids.camera.texture = self.ids.camera._camera.texture
 
     def stop(self):
-        pass
+        self.ids.camera.play = False
+        self.ids.btn_start_stop.text = 'Start Camera'
+        self.ids.camera.texture = None
 
     def capture(self):
-        pass
+        file_path = f"files/{time.strftime('%Y%m%d-%H%M%S')}.png"
+        self.ids.camera.export_to_png(file_path)
 
 
 class FileSharer:
