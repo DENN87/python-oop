@@ -15,6 +15,7 @@ class CameraScreen(Screen):
     def start(self):
         """Starts camera and changes Button text"""
 
+        self.ids.camera.opacity = 1
         self.ids.camera.play = True
         self.ids.btn_start_stop.text = 'Stop Camera'
         self.ids.camera.texture = self.ids.camera._camera.texture
@@ -22,6 +23,7 @@ class CameraScreen(Screen):
     def stop(self):
         """Stops camera and changes Button text"""
 
+        self.ids.camera.opacity = 0
         self.ids.camera.play = False
         self.ids.btn_start_stop.text = 'Start Camera'
         self.ids.camera.texture = None

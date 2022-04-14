@@ -8,6 +8,7 @@
             resolution: (640, 480)
             play: False
             size_hint_y: 0.8
+            opacity: 0
         Button:
             id: btn_start_stop
             text: 'Start Camera'
@@ -53,6 +54,12 @@
                 background_color: 'greenyellow'
 
 <RootWidget>:
+    canvas.before:
+        Color:
+            rgb: (4/255, 20/255, 30/255)
+        Rectangle:
+            pos: self.pos
+            size: self.size
     CameraScreen:
         id: camera_screen
         name: 'camera_screen'
