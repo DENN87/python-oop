@@ -46,7 +46,14 @@ class ResultsPage(MethodView):
         # Generate PDF file with data
         pdf_report.generate_pdf(renters, the_bill)
 
-        return f"Link to PDF Result File"
+        return render_template('results.html',
+                               renter_1=renter_1,
+                               amount_1=renter_1.pays(the_bill, renters),
+                               renter_2=renter_2,
+                               amount_2=renter_2.pays(the_bill, renters),
+                               renter_3=renter_3,
+                               amount_3=renter_3.pays(the_bill, renters),
+                               )
 
 
 class BillForm(Form):
