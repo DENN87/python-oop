@@ -2,6 +2,7 @@ import numpy as np
 from PIL import Image
 
 class Square:
+    """A square shape that can be drawn on a Canvas object"""
     def __init__(self, x, y, side, color):
         self.x = x
         self.y = y
@@ -9,8 +10,9 @@ class Square:
         self.color = color
 
     def draw(self, canvas):
-        pass
-
+        """Draws itself into the canvas"""
+        # Changes a slice of the array with new values
+        canvas.data[self.x: self.x + self.side, self.y: self.y + self.side] = self.color
 
 class Rectangle:
     """A rectangle shape that can be drawn on a Canvas object"""
