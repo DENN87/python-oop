@@ -12,7 +12,7 @@ class HouseMate:
         return f"{self.name} was in the house for {self.days_in_house} days."
 
     def pays(self, bill, renters_list):
-        days = [r.days_in_house for r in renters_list]
-        to_pay = self.days_in_house / sum(days) * bill.amount
+        days = [int(r.days_in_house) for r in renters_list]
+        to_pay = int(self.days_in_house) / sum(days) * int(bill.amount)
 
         return round(to_pay, 2)

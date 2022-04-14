@@ -2,6 +2,10 @@ from flask.views import MethodView
 from wtforms import Form, StringField, SubmitField
 from flask import Flask, render_template, request
 
+from resources.bill import Bill
+from resources.housemate import HouseMate
+from resources.pdfreport import PdfReport
+
 app = Flask(__name__)
 
 class HomePage(MethodView):
@@ -22,8 +26,27 @@ class ResultsPage(MethodView):
 
     def post(self):
         bill_form = BillForm(request.form)
-        data = bill_form.data
-        return data
+
+        the_bill = Bill(bill_form.amount.data, bill_form.period.data)
+
+        renters = []
+
+        renter_1 = HouseMate(bill_form.name1.data, bill_form.days_in_house1.data)
+        renters.append(renter_1)
+
+        renter_2 = HouseMate(bill_form.name2.data, bill_form.days_in_house2.data)
+        renters.append(renter_2)
+
+        renter_3 = HouseMate(bill_form.name3.data, bill_form.days_in_house3.data)
+        renters.append(renter_3)
+
+        # Creating instance of class PdfReport
+        pdf_report = PdfReport("bill_results.pdf")
+
+        # Generate PDF file with data
+        pdf_report.generate_pdf(renters, the_bill)
+
+        return f"Link to PDF Result File"
 
 
 class BillForm(Form):
@@ -40,6 +63,7 @@ class BillForm(Form):
     days_in_house3 = StringField("Days in the house: ")
 
     button = SubmitField("Calculate")
+
 
 app.add_url_rule('/', view_func=HomePage.as_view('index'))
 app.add_url_rule('/bill', view_func=BillFormPage.as_view('bill_form'))
