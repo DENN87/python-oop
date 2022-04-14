@@ -28,8 +28,11 @@ class HouseMate:
     def __repr__(self):
         return f"{self.name} was in the house for {self.days_in_house} days."
 
-    def pays(self, bill, renter_2):
-        return round(self.days_in_house / (self.days_in_house + renter_2.days_in_house) * bill.amount, 2)
+    def pays(self, bill, renters_list):
+        days = [r.days_in_house for r in renters_list]
+        to_pay = self.days_in_house / sum(days) * bill.amount
+
+        return round(to_pay, 2)
 
 
 class PdfReport:
@@ -42,7 +45,7 @@ class PdfReport:
     def __init__(self, filename):
         self.filename = filename
 
-    def generate_pdf(self, renter_1, renter_2, bill):
+    def generate_pdf(self, renters_list, bill):
         pdf = FPDF(orientation='P', unit='pt', format='letter')
         pdf.add_page()
         pdf.set_fill_color(228, 233, 190)
@@ -90,19 +93,13 @@ class PdfReport:
         pdf.cell(w=100, h=20, txt="Days Rented", border=1, align="C", fill=1)
         pdf.cell(w=0, h=20, txt="Total ($)", border=1, align="C", fill=1, ln=1)
 
-        # Insert renter_1 details
-        pdf.set_font(family='Helvetica', size=12, style='I')
-        pdf.cell(w=100, h=20, txt=renter_1.name, border=1, align="C")
-        pdf.cell(w=250, h=20, txt="Shared room bed #1", border=1, align="C")
-        pdf.cell(w=100, h=20, txt=str(renter_1.days_in_house), border=1, align="C")
-        pdf.cell(w=0, h=20, txt=str(renter_1.pays(bill, renter_2)), border=1, align="C", ln=1)
-
-        # Insert renter_2 details
-        pdf.set_font(family='Helvetica', size=12, style='I')
-        pdf.cell(w=100, h=20, txt=renter_2.name, border=1, align="C")
-        pdf.cell(w=250, h=20, txt="Shared room bed #2", border=1, align="C")
-        pdf.cell(w=100, h=20, txt=str(renter_2.days_in_house), border=1, align="C")
-        pdf.cell(w=0, h=20, txt=str(renter_2.pays(bill, renter_1)), border=1, align="C", ln=1)
+        # Insert Renters details
+        for renter in renters_list:
+            pdf.set_font(family='Helvetica', size=12, style='I')
+            pdf.cell(w=100, h=20, txt=renter.name, border=1, align="C")
+            pdf.cell(w=250, h=20, txt="Shared House", border=1, align="C")
+            pdf.cell(w=100, h=20, txt=str(renter.days_in_house), border=1, align="C")
+            pdf.cell(w=0, h=20, txt=str(renter.pays(bill, renters_list)), border=1, align="C", ln=1)
 
         # Total Bill amount
         pdf.set_font(family='Helvetica', size=12, style='B')
@@ -115,15 +112,29 @@ class PdfReport:
         pdf.output(self.filename)
 
 
-# Main
-current_bill = Bill(700, "March 2022")
-print(current_bill)
+# Main block
+print("Welcome to Invoice Generator ! \n")
 
-bob = HouseMate("Bob", 21)
-anne = HouseMate("Anne", 27)
+# Get House Bill details
+bill_amount = int(input("What was the bill amount: "))
+bill_period = input("What was the bill period: ")
 
-print(f"{bob} Sharing ${bob.pays(current_bill, anne)} of the total bill.")
-print(f"{anne} Sharing ${anne.pays(current_bill, bob)} of the total bill.")
+# Get number of renters
+renters_number = int(input("Enter the number of renters you had: "))
 
+# Collect each renter details and create instances of class HouseMate
+renters = []
+for renter in range(renters_number):
+    print(f"\nEnter details for Renter {renter + 1}")
+    name = input("What is the name: ")
+    days = int(input("How many days lived in: "))
+    renters.append(HouseMate(name, days))
+
+# Creating instance of class Bill
+current_bill = Bill(bill_amount, bill_period)
+
+# Creating instance of class PdfReport
 pdf_report = PdfReport("Report1.pdf")
-pdf_report.generate_pdf(bob, anne, current_bill)
+
+# Generate PDF file with data
+pdf_report.generate_pdf(renters, current_bill)
