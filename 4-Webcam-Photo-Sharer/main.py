@@ -23,7 +23,7 @@ class CameraScreen(Screen):
     def capture(self):
         file_path = f"files/{time.strftime('%Y%m%d-%H%M%S')}.png"
         self.ids.camera.export_to_png(file_path)
-
+        self.manager.current = 'image_screen'
 
 class FileSharer:
 
