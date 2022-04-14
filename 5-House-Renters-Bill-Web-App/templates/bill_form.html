@@ -9,5 +9,26 @@
     <p>Please fill in the form with all the details for each renters and get your results.</p>
     <a href={{url_for('index')}}>Home Page</a>
     <a href={{url_for('results')}}>Results Page</a>
+
+    <form>
+        <p>{{bill_form.amount.label}} {{bill_form.amount}}</p>
+        <p>{{bill_form.period.label}} {{bill_form.period}}</p>
+
+        <p>First Renter</p>
+        <p>{{bill_form.name1.label}} {{bill_form.name1}}</p>
+        <p>{{bill_form.days_in_house1.label}} {{bill_form.days_in_house1}}</p>
+        <p>Second Renter</p>
+        <p>{{bill_form.name2.label}} {{bill_form.name3}}</p>
+        <p>{{bill_form.days_in_house2.label}} {{bill_form.days_in_house2}}</p>
+        <p>Third Renter</p>
+        <p>{{bill_form.name3.label}} {{bill_form.name3}}</p>
+        <p>{{bill_form.days_in_house3.label}} {{bill_form.days_in_house3}}</p>
+
+        <br>
+
+        {{bill_form.button}}
+
+    </form>
+
 </body>
 </html>
