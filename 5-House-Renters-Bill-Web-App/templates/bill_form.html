@@ -10,7 +10,7 @@
     <a href={{url_for('index')}}>Home Page</a>
     <a href={{url_for('results')}}>Results Page</a>
 
-    <form>
+    <form action="/results" method="POST">
         <p>{{bill_form.amount.label}} {{bill_form.amount}}</p>
         <p>{{bill_form.period.label}} {{bill_form.period}}</p>
 
