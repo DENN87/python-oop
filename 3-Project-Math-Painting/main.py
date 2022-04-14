@@ -41,7 +41,7 @@ class Canvas:
         # change [0, 0, 0] with user given values for color
         self.data[:] = self.color
 
-    def draw(self, image_path):
+    def make_image(self, image_path):
         """Converts the current array into an image file"""
         img = Image.fromarray(self.data, 'RGB')
         img.save(image_path)
