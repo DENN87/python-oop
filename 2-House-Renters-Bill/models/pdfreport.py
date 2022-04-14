@@ -26,7 +26,7 @@ class PdfReport:
 
         # Insert title
         pdf.set_font(family='Helvetica', size=24, style='B')
-        pdf.cell(w=0, h=80, txt="ROOM RENTAL INVOICE", border=0, align="L", ln=1)
+        pdf.cell(w=0, h=80, txt="HOUSE RENTAL INVOICE", border=0, align="L", ln=1)
 
         # Insert Invoice Number & Period
         pdf.set_left_margin(382)

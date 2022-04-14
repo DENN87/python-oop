@@ -3,7 +3,7 @@ from models.housemate import HouseMate
 from models.pdfreport import PdfReport
 
 
-print("Welcome to Invoice Generator ! \n")
+print("Welcome to House Invoice Generator ! \n")
 
 # Get House Bill details
 bill_amount = int(input("What was the bill amount: "))
@@ -28,3 +28,5 @@ pdf_report = PdfReport("Report1.pdf")
 
 # Generate PDF file with data
 pdf_report.generate_pdf(renters, current_bill)
+
+print("Report generated successfully !")
