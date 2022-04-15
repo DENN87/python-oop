@@ -1,6 +1,7 @@
 import requests
 from selectorlib import Extractor
 
+
 class Temperature:
     """
     Represents a temperature value extracted from the
@@ -17,7 +18,7 @@ class Temperature:
     }
 
     base_url = 'http://www.timeanddate.com/weather/'
-    yml_path = 'temperature.yaml'
+    yml_path = 'models/temperature.yaml'
 
     def __init__(self, country, city):
         self.country = country.replace(" ", "-")
