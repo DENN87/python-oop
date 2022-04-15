@@ -4,9 +4,10 @@ from flask import Flask, render_template, request
 
 from resources.bill import Bill
 from resources.housemate import HouseMate
-from resources.pdfreport import PdfReport
+from resources.pdfreport import PdfReport, FileShare
 
 app = Flask(__name__)
+
 
 class HomePage(MethodView):
 
@@ -46,6 +47,10 @@ class ResultsPage(MethodView):
         # Generate PDF file with data
         pdf_report.generate_pdf(renters, the_bill)
 
+        file_to_share = FileShare(pdf_report.filename)
+
+        pdf_url = file_to_share.share()
+
         return render_template('results.html',
                                renter_1=renter_1,
                                amount_1=renter_1.pays(the_bill, renters),
@@ -53,6 +58,7 @@ class ResultsPage(MethodView):
                                amount_2=renter_2.pays(the_bill, renters),
                                renter_3=renter_3,
                                amount_3=renter_3.pays(the_bill, renters),
+                               pdf_url=pdf_url
                                )
 
 
