@@ -43,7 +43,7 @@ class Temperature:
         f_to_c = round((float(scraped_content['temp'].replace("°F", "").strip()) - 32) / 1.8)
         return f_to_c
 
-
-if __name__ == "__main__":
-    temp = Temperature("usa", "san francisco").get()
-    print(temp)
+#
+# if __name__ == "__main__":
+#     temp = Temperature("usa", "san francisco").get()
+#     print(temp)
