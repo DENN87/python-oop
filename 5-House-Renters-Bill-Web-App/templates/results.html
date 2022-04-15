@@ -1,15 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
 <head>
     <meta charset="UTF-8">
-    <title>House Rental Results</title>
+    <title>House Bill Results</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
-<body>
-    <h1>House Rental Results</h1>
-    <p>Your results have been generated, follow the link bellow to see your invoice.</p>
-    <p>{{renter_1}} pays {{amount_1}}</p>
-    <p>{{renter_2}} pays {{amount_2}}</p>
-    <p>{{renter_3}} pays {{amount_3}}</p>
-    <a href={{url_for('index')}}>Home Page</a>
+<body class="d-flex h-100 text-center text-dark bg-light">
+<div class="cover-container d-flex p-4 mx-auto flex-column">
+    <header class="my-5">
+        <div>
+          <h1 class="display-5 float-md-center mb-0 fw-bold">House Bill Results</h1>
+        </div>
+    </header>
+
+  <main class="px-5 my-5">
+      <div class="col-md-12 mx-auto my-5">
+        <p class="lead fw-normal text-muted mb-5">Your results have been generated, follow the link bellow to see your invoice.</p>
+        <p class="lead fw-normal text-muted">Here is a summary:</p>
+        <p class="lead fw-normal">{{renter_1}} Will Pay {{amount_1}}</p>
+        <p class="lead fw-normal">{{renter_2}} Will Pay {{amount_2}}</p>
+        <p class="lead fw-normal">{{renter_3}} Will Pay {{amount_3}}</p>
+      </div>
+
+    <div class="col-12">
+        <hr class="my-4">
+        <a href={{url_for('bill_form')}} class='mt-5 w-50 btn btn-primary btn-lg'>PDF File Link</a>
+    </div>
+
+  </main>
+
+    <footer class="mt-auto text-white-50">
+        <p>Created by Denis Schiopu @ 2022</p>
+    </footer>
+
+</div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </html>
