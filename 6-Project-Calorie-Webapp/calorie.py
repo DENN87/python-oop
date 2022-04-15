@@ -10,4 +10,5 @@ class Calorie:
         self.temp = temp
 
     def calculate(self):
-        pass
+        bmr = 10 * self.weight + 6.5 * self.height - 5 * self.age - 10 * self.temp
+        return bmr
