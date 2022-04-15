@@ -16,23 +16,26 @@
 
   <main class="px-5 my-5">
       <div class="col-md-12 mx-auto my-5">
-        <p class="lead fw-normal text-muted mb-5">Your results have been generated, follow the link bellow to see your invoice.</p>
-        <p class="lead fw-normal text-muted">Here is a summary:</p>
-        <p class="lead fw-normal">{{renter_1}} Will Pay {{amount_1}}</p>
-        <p class="lead fw-normal">{{renter_2}} Will Pay {{amount_2}}</p>
-        <p class="lead fw-normal">{{renter_3}} Will Pay {{amount_3}}</p>
+        <p class="lead fw-normal text-muted">Your results have been generated, follow the link bellow to see your invoice.</p>
+          <hr class="my-4">
+        <p class="lead fw-normal">{{renter_1}}</p>
+        <p class="lead fw-normal">Will Pay {{amount_1}}</p>
+          <hr class="my-4">
+
+        <p class="lead fw-normal">{{renter_2}}</p>
+        <p class="lead fw-normal">Will Pay {{amount_2}}</p>
+          <hr class="my-4">
+
+        <p class="lead fw-normal">{{renter_3}}</p>
+        <p class="lead fw-normal">Will Pay {{amount_3}}</p>
+          <hr class="my-4">
       </div>
 
     <div class="col-12">
-        <hr class="my-4">
-        <a href={{url_for('bill_form')}} class='mt-5 w-50 btn btn-primary btn-lg'>PDF File Link</a>
+        <a href={{pdf_url}} class='mt-5 w-50 btn btn-primary btn-lg'>View PDF File</a>
     </div>
 
   </main>
-
-    <footer class="mt-auto text-white-50">
-        <p>Created by Denis Schiopu @ 2022</p>
-    </footer>
 
 </div>
 </body>
