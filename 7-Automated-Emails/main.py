@@ -31,5 +31,5 @@ class NewsFeed:
         return email_body
 
 
-news_feed = NewsFeed('tesla', '2022-03-14', '2022-04-14', 'en')
+news_feed = NewsFeed('tesla', '2022-03-16', '2022-04-15', 'en')
 print(news_feed.get())
