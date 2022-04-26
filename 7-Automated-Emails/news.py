@@ -38,6 +38,3 @@ class NewsFeed:
               f"&language={self.language}&apiKey={self.api_key}"
         return url
 
-
-news_feed = NewsFeed(interest='tesla', from_date='2022-03-16', to_date='2022-04-15', language='en')
-print(news_feed.get())
