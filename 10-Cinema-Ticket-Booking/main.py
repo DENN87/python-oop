@@ -3,11 +3,22 @@ import string
 
 
 class User:
+    """Represents a user that can buy a cinema Seat"""
     def __init__(self, name):
         self.name = name
 
     def buy(self, seat, card):
-        pass
+        """Buys the ticket if the card is valid"""
+        if seat.is_free():
+            if card.validate(price=seat.get_price()):
+                seat.occupy()
+                ticket = Ticket(user=self, price=seat.get_price(), seat_number=seat_id)
+                ticket.to_pdf()
+                return "Purchase successful!"
+            else:
+                return "There was a problem with your card!"
+        else:
+            return "Seat is taken!"
 
 
 class Seat:
@@ -64,3 +75,6 @@ if __name__ == "__main__":
 
     print(name, seat_id)
     print(card_type, card_number, card_cvc, card_holder)
+
+    user = User(name=name)
+    seat = Seat(seat_id=seat_id)
