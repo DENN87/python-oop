@@ -33,7 +33,7 @@ class Seat:
         """Get the price of a certain seat"""
         connection = sqlite3.connect(self.database)
         cursor = connection.cursor()
-        cursor.execute("""SELECT "price" FROM "Seat" WHERE "seat_id" =?""", [self.seat_id])
+        cursor.execute("""SELECT "price" FROM "Seat" WHERE "seat_id"=?""", [self.seat_id])
         price = cursor.fetchall()[0][0]
         return price
 
@@ -41,7 +41,7 @@ class Seat:
         """Check in the database if a Seat is taken or not"""
         connection = sqlite3.connect(self.database)
         cursor = connection.cursor()
-        cursor.execute("""SELECT "taken" FROM "Seat" WHERE "seat_id" =?""", [self.seat_id])
+        cursor.execute("""SELECT "taken" FROM "Seat" WHERE "seat_id"=?""", [self.seat_id])
         result = cursor.fetchall()[0][0]
 
         if result == 0:
@@ -68,7 +68,20 @@ class Card:
         self.holder = holder
 
     def validate(self, price):
-        pass
+        """Checks if Card is valid and has balance. Subtracts price from balance"""
+        connection = sqlite3.connect(self.database)
+        cursor = connection.cursor()
+        cursor.execute("""SELECT "balance" FROM "Card" WHERE "number"=? and "cvc"=? """, [self.number, self.cvc])
+        result = cursor.fetchall()
+
+        if result:
+            balance = result[0][0]
+            if balance >= price:
+                connection.execute("""UPDATE "Card" SET "balance"=? WHERE "number"=? and "cvc"=? """,
+                                   [balance - price, self.number, self.cvc])
+                connection.commit()
+                connection.close()
+                return True
 
 
 class Ticket:
