@@ -1,8 +1,4 @@
 import justpy as jp
-import sys
-from pathlib import Path
-sys.path.append(str(Path('.').absolute().parent))
-
 import definition
 
 
