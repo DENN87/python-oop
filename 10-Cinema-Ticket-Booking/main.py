@@ -51,3 +51,16 @@ class Ticket:
 
     def to_pdf(self):
         pass
+
+
+if __name__ == "__main__":
+
+    name = input("Your full name: ")
+    seat_id = input("Preferred seat number: ")
+    card_type = input("Your card type: ")
+    card_number = input("Your card number: ")
+    card_cvc = input("Your card CVC: ")
+    card_holder = input("Card holder name: ")
+
+    print(name, seat_id)
+    print(card_type, card_number, card_cvc, card_holder)
