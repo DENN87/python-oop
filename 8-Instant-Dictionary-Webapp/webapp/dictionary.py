@@ -15,11 +15,10 @@ class Dictionary:
         container = jp.QPageContainer(a=lay_out)
 
         div = jp.Div(a=container, classes="bg-gray-200 h-screen")
-        jp.Div(a=div, text="Quick and Easy English Dictionary", classes="text-4xl text-center p-5")
         jp.Div(a=div, text="Get the definition of any English word instantly as you type.",
-               classes="text-m mx-2 text-center")
+               classes="text-lg p-8 text-center")
 
-        input_div = jp.Div(a=div, classes="grid grid-cols-1 p-5")
+        input_div = jp.Div(a=div, classes="grid grid-cols-1 p-1")
 
         output_div = jp.Div(a=div, classes="justify-items-stretch m-2 p-2 text-lg border-2 h-40 ")
         input_box = jp.Input(a=input_div, placeholder="Type in a word here...",

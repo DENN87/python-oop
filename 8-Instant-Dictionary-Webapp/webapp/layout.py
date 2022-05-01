@@ -10,9 +10,9 @@ class DefaultLayout(jp.QLayout):
 
         drawer = jp.QDrawer(a=self, show_if_above=True, v_mode="left", bordered=True)
 
-        scroller = jp.QScrollArea(a=drawer, classes="fit")
+        scroller = jp.QScrollArea(a=drawer, classes="fit p-5")
         qlist = jp.QList(a=scroller)
-        a_classes = "p-5 text-lg text-blue-400 hover:text-blue-700"
+        a_classes = "text-xl text-blue-400 hover:text-blue-700"
         jp.A(a=qlist, text="Home", href="/", classes=a_classes)
         jp.Br(a=qlist)
         jp.A(a=qlist, text="Dictionary", href="/dictionary", classes=a_classes)
