@@ -1,4 +1,4 @@
-## Udemy - Advanced Python: Python OOP with 10 Real-World Programs
+## Advanced Python: Python OOP with 10 Real-World Programs
 
 
 Master Python from the inside out and learn how to build any Python program with ease using Python classes and OOP.
